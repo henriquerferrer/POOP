@@ -6,6 +6,10 @@ public class Estudante extends Pessoa {
 		this.curso = curso;
 	}
 	
+	public boolean isEstudante() {
+		return true;
+	}
+	
 	public CursoDei getCurso() {
 		return this.curso;
 	}
@@ -14,7 +18,7 @@ public class Estudante extends Pessoa {
 		this.curso = curso;
 	}
 	
-	//public String getGuestListFormat() {
-	//	return 
-	//}
+	public String getGuestListFormat() {
+		return super.getGuestListFormat() + " e " + this.curso;
+	}
 }

@@ -6,6 +6,10 @@ public class Professor extends Pessoa {
 		this.tipoProfessor = tipoProfessor;
 	}
 	
+	public boolean isProfessor() {
+		return true;
+	}
+	
 	public TipoProfessor getTipoProfessor() {
         return this.tipoProfessor;
     }

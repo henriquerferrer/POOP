@@ -6,6 +6,10 @@ public class Funcionario extends Pessoa {
 		this.tipoFuncionario = tipoFuncionario;
 	}
 	
+	public boolean isFuncionario() {
+		return true;
+	}
+	
 	public TipoFuncionario getTipoFuncionario() {
 		return this.tipoFuncionario;
 	}
