@@ -8,11 +8,11 @@ public class Inscricao {
 		this.local = local;
 	}
 	
-	private Pessoa getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 	
-	private Local getLocal() {
+	public Local getLocal() {
 		return local;
 	}
 }
