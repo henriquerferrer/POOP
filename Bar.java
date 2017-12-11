@@ -1,5 +1,7 @@
 public class Bar extends Local{
-    private int lotacao;
+
+	private static final long serialVersionUID = 1L;
+	private int lotacao;
     private double consumoMinimo;
 
     public Bar(String coordenadas, int lotacao, double consumoMinimo) {

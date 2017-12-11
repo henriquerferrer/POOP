@@ -1,5 +1,8 @@
+import java.io.Serializable;
 
-public class Inscricao {
+public class Inscricao implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private Pessoa pessoa;
 	private Local local;
 	
@@ -8,11 +11,11 @@ public class Inscricao {
 		this.local = local;
 	}
 	
-	private Pessoa getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 	
-	private Local getLocal() {
+	public Local getLocal() {
 		return local;
 	}
 }

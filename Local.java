@@ -1,8 +1,11 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Local {
-    private String coordenadas;
-    /*
+public abstract class Local implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private String coordenadas;
+
     public static void main(String args[]) {
         ArrayList<Local> locais = new ArrayList<Local>();
         locais.add(new Bar("junto do cafe", 20, 5.0));
@@ -14,7 +17,7 @@ public abstract class Local {
             counter += l.getCustoMinimo();
         }
         System.out.println(counter);
-    }*/
+    }
 
     public Local(String coordenadas) {
         this.coordenadas = coordenadas;
