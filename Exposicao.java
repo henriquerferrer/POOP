@@ -1,5 +1,7 @@
 public class Exposicao extends Local{
-    private String formaArtistica;
+
+	private static final long serialVersionUID = 1L;
+	private String formaArtistica;
     private double custoBilhete;
 
     public Exposicao(String coordenadas, String formaArtistica, double custoBilhete) {

@@ -1,6 +1,8 @@
 public abstract class Parque extends Local {
 
-    public Parque(String coordenadas) {
+	private static final long serialVersionUID = 1L;
+
+	public Parque(String coordenadas) {
         super(coordenadas);
     }
     

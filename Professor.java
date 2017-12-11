@@ -1,4 +1,6 @@
 public class Professor extends Pessoa {
+
+	private static final long serialVersionUID = 1L;
 	private TipoProfessor tipoProfessor;
 	
 	public Professor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {

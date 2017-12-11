@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class AreaDesportiva extends Parque {
 
-    private ArrayList<String> desportos;
+	private static final long serialVersionUID = 1L;
+	private ArrayList<String> desportos;
 
     public AreaDesportiva(String coordenadas, ArrayList<String> desportos) {
         super(coordenadas);
