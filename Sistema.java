@@ -13,5 +13,31 @@ public class Sistema {
 		this.gestorBD = new GestorBaseDados();
 	}
 	
+	public void criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
+		new Professor(tipoProfessor, nome, numCc, password, perfil);
+	}
 	
+	public void criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
+		new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
+	}
+	
+	public void criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
+		new Estudante( curso , nome, numCc, password, perfil);
+	}
+	
+	public void criarBar(String coordenadas, int lotacao, double consumoMinimo) {
+		new Bar( coordenadas, lotacao, consumoMinimo);
+	}
+	
+	public void criarExposicao(String coordenadas, String formaArtistica, double custoBilhete) {
+		new Exposicao(coordenadas, formaArtistica, custoBilhete);
+	}
+	
+	public void criarJardim(String coordenadas, double area) {
+		new Jardim(coordenadas, area);
+	}
+	
+	public void criarAreaDesportiva(String coordenadas, ArrayList<String> desportos) {
+		new AreaDesportiva(coordenadas, desportos);
+	}
 }

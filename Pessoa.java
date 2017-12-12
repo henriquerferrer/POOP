@@ -7,7 +7,6 @@ public abstract class Pessoa implements Serializable{
 	private String numCc;
 	private String password;
 	private Perfil perfil;
-	private String StringPerfil;
 	private double discontoEmExibicoes;
 
 	public Pessoa(String nome, String numCc, String password, Perfil perfil) {
@@ -38,11 +37,11 @@ public abstract class Pessoa implements Serializable{
 		this.numCc = numCc;
 	}
 	
-	private String getPassword() {
+	protected String getPassword() {
 		return this.password;
 	}
 
-	private void setPassword(String password) {
+	protected void setPassword(String password) {
 		this.password = password;
 	}
 	
@@ -54,15 +53,11 @@ public abstract class Pessoa implements Serializable{
 		this.perfil = perfil;
 	}
 	
-	public String perfilToStr() {
-		return this.perfil.toString();
-	}
-	
 	public String getGuestListFormat() {
 		return this.nome + " " + this.perfil;
 	}
 	
-	public static void main(String [] args) {
+	/*public static void main(String [] args) {
 		Funcionario f = new Funcionario(TipoFuncionario.PARTTIME, "Joao", "1234567890", "miste123", Perfil.BOEMIO);
 		Estudante e = new Estudante(CursoDei.LEI, "Pedro", "0987654321", "miste1234", Perfil.BOEMIO);
 		Professor p = new Professor(TipoProfessor.ASSOCIADO, "Mario", "0934626326", "miste12345", Perfil.BOEMIO);
@@ -70,6 +65,6 @@ public abstract class Pessoa implements Serializable{
 		System.out.println(f.getGuestListFormat());
 		System.out.println(e.getGuestListFormat());
 		System.out.println(p.getGuestListFormat());
-	}
+	}*/
 }
 	
