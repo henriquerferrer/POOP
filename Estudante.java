@@ -1,3 +1,5 @@
+package poop;
+
 public class Estudante extends Pessoa {
 
 	private static final long serialVersionUID = 1L;

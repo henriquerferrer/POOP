@@ -1,3 +1,5 @@
+package poop;
+
 public class Bar extends Local{
 
 	private static final long serialVersionUID = 1L;
