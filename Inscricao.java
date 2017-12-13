@@ -1,3 +1,5 @@
+package poop;
+
 import java.io.Serializable;
 
 public class Inscricao implements Serializable{

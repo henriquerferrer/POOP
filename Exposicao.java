@@ -1,3 +1,5 @@
+package poop;
+
 public class Exposicao extends Local{
 
 	private static final long serialVersionUID = 1L;

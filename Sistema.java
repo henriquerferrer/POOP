@@ -18,19 +18,19 @@ public class Sistema {
 	public void criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
 		Professor p = new Professor(tipoProfessor, nome, numCc, password, perfil);
 		pessoas.add(p);
-                gestorBD.savePerson(p);
+                gestorBD.savePessoa(p);
 	}
 	
 	public void criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
 		Funcionario f = new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
 		pessoas.add(f);
-                gestorBD.savePerson(f);
+                gestorBD.savePessoa(f);
 	}
 	
 	public void criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
 		Estudante e = new Estudante( curso , nome, numCc, password, perfil);
 		pessoas.add(e);
-                gestorBD.savePerson(e);
+                gestorBD.savePessoa(e);
 	}
 	
 	public void criarBar(String coordenadas, int lotacao, double consumoMinimo) {

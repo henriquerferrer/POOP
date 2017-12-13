@@ -1,3 +1,5 @@
+package poop;
+
 public class Jardim extends Parque {
 
 	private static final long serialVersionUID = 1L;
