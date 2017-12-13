@@ -1,3 +1,5 @@
+package poop;
+
 import java.util.ArrayList;
 
 public class Sistema {
@@ -16,36 +18,43 @@ public class Sistema {
 	public void criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
 		Professor p = new Professor(tipoProfessor, nome, numCc, password, perfil);
 		pessoas.add(p);
+                gestorBD.savePerson(p);
 	}
 	
 	public void criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
 		Funcionario f = new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
 		pessoas.add(f);
+                gestorBD.savePerson(f);
 	}
 	
 	public void criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
 		Estudante e = new Estudante( curso , nome, numCc, password, perfil);
 		pessoas.add(e);
+                gestorBD.savePerson(e);
 	}
 	
 	public void criarBar(String coordenadas, int lotacao, double consumoMinimo) {
 		Bar b = new Bar( coordenadas, lotacao, consumoMinimo);
 		locais.add(b);
+                gestorBD.saveLocal(b);
 	}
 	
 	public void criarExposicao(String coordenadas, String formaArtistica, double custoBilhete) {
 		Exposicao e = new Exposicao(coordenadas, formaArtistica, custoBilhete);
 		locais.add(e);
+                gestorBD.saveLocal(e);
 	}
 	
 	public void criarJardim(String coordenadas, double area) {
 		Jardim j = new Jardim(coordenadas, area);
 		locais.add(j);
+                gestorBD.saveLocal(j);
 	}
 	
 	public void criarAreaDesportiva(String coordenadas, ArrayList<String> desportos) {
 		AreaDesportiva a = new AreaDesportiva(coordenadas, desportos);
 		locais.add(a);
+                gestorBD.saveLocal(a);
 	}
 	
 	public ArrayList<Local> getLocais() {
@@ -55,7 +64,7 @@ public class Sistema {
 	public int getLotacaoDeBar(Bar bar) {
 		return bar.getLotacao();
 	}
-	
+	/*
 	public ArrayList<Pessoa> getIncritosEmLocal(Local local){
 		ArrayList<Pessoa> helper = new ArrayList<Pessoa>(); 
 		for(int i = 0; i < inscricoes.size(); i++) {
@@ -88,5 +97,5 @@ public class Sistema {
 		
 		return true;
 	}
-	
+	*/
 }
