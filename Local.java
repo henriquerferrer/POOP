@@ -40,4 +40,16 @@ public abstract class Local implements Serializable{
     public boolean isExposicao() {
         return false;
     }
+    
+    @Override
+    public boolean equals(Object other){
+    	if (other == null) return false;
+        if (other == this) return true;
+        if (!(other instanceof Local))return false;
+        Local local = (Local)other;
+        if(local.getCoordenadas().equals(this.coordenadas)) {
+        	return true;
+        }
+        return false;
+    }
 }

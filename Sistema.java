@@ -15,46 +15,49 @@ public class Sistema {
 		this.gestorBD = new GestorBaseDados();
 	}
 	
+	//TODO
+	//CONFIRM THAT YOU ARE NOT CREATING THE SAME PEOPLE OR LOCAL TWICE
+	
 	public void criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
 		Professor p = new Professor(tipoProfessor, nome, numCc, password, perfil);
 		pessoas.add(p);
-                gestorBD.savePessoa(p);
+		gestorBD.savePessoa(p);
 	}
 	
 	public void criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
 		Funcionario f = new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
 		pessoas.add(f);
-                gestorBD.savePessoa(f);
+		gestorBD.savePessoa(f);
 	}
 	
 	public void criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
 		Estudante e = new Estudante( curso , nome, numCc, password, perfil);
 		pessoas.add(e);
-                gestorBD.savePessoa(e);
+		gestorBD.savePessoa(e);
 	}
 	
 	public void criarBar(String coordenadas, int lotacao, double consumoMinimo) {
 		Bar b = new Bar( coordenadas, lotacao, consumoMinimo);
 		locais.add(b);
-                gestorBD.saveLocal(b);
+		gestorBD.saveLocal(b);
 	}
 	
 	public void criarExposicao(String coordenadas, String formaArtistica, double custoBilhete) {
 		Exposicao e = new Exposicao(coordenadas, formaArtistica, custoBilhete);
 		locais.add(e);
-                gestorBD.saveLocal(e);
+		gestorBD.saveLocal(e);
 	}
 	
 	public void criarJardim(String coordenadas, double area) {
 		Jardim j = new Jardim(coordenadas, area);
 		locais.add(j);
-                gestorBD.saveLocal(j);
+		gestorBD.saveLocal(j);
 	}
 	
 	public void criarAreaDesportiva(String coordenadas, ArrayList<String> desportos) {
 		AreaDesportiva a = new AreaDesportiva(coordenadas, desportos);
 		locais.add(a);
-                gestorBD.saveLocal(a);
+        gestorBD.saveLocal(a);
 	}
 	
 	public ArrayList<Local> getLocais() {
@@ -64,7 +67,7 @@ public class Sistema {
 	public int getLotacaoDeBar(Bar bar) {
 		return bar.getLotacao();
 	}
-	/*
+	
 	public ArrayList<Pessoa> getIncritosEmLocal(Local local){
 		ArrayList<Pessoa> helper = new ArrayList<Pessoa>(); 
 		for(int i = 0; i < inscricoes.size(); i++) {
@@ -88,14 +91,14 @@ public class Sistema {
 	public boolean increverPessoa(Pessoa pessoa, Local local) {
 		int numInscricoes = 0;
 		for(int i = 0; i < inscricoes.size(); i++) {
-			if(inscricoes.get(i).getPessoa() == pessoa) {
+			if(inscricoes.get(i).getPessoa().equals(pessoa)) {
 				numInscricoes += 1;				
 				if(numInscricoes >= 5) {
 					return false; //Quer dizer que ja te inscreveste em 5 locais e nao podes inscrever e mais nenhum
 				}
 			}
 			
-			if(inscricoes.get(i).getPessoa() == pessoa && inscricoes.get(i).getLocal() == local) {
+			if(inscricoes.get(i).getPessoa() == pessoa && inscricoes.get(i).getLocal().equals(local)) {
 				return false;
 			}
 			
@@ -106,6 +109,8 @@ public class Sistema {
 		}
 		Inscricao i = new Inscricao(pessoa, local);
 		inscricoes.add(i);
+		gestorBD.saveInscricao(i);
+		return true;
 	}
-	*/
+	
 }

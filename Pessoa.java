@@ -59,6 +59,18 @@ public abstract class Pessoa implements Serializable{
 		return this.nome + " " + this.perfil;
 	}
 	
+	@Override
+	public boolean equals(Object other){
+		if (other == null) return false;
+		if (other == this) return true;
+		if (!(other instanceof Local))return false;
+		Pessoa pessoa = (Pessoa)other;
+		if(pessoa.getNumCc().equals(this.numCc)) {
+			return true;
+		}
+		return false;
+	}
+	
 	/*public static void main(String [] args) {
 		Funcionario f = new Funcionario(TipoFuncionario.PARTTIME, "Joao", "1234567890", "miste123", Perfil.BOEMIO);
 		Estudante e = new Estudante(CursoDei.LEI, "Pedro", "0987654321", "miste1234", Perfil.BOEMIO);
