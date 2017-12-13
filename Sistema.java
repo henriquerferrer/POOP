@@ -66,11 +66,19 @@ public class Sistema {
 		return helper;
 	}
 	
-	private inscritosBar()
+	private int getNIncritosBar(Bar bar) {
+		int counter = 0;
+		for(int i = 0; i < inscricoes.size(); i++) {
+			if(inscricoes.get(i).getLocal() == bar) {
+				counter = counter + 1;
+			}
+		}
+		return counter;
+	}
 	
 	public boolean increverPessoa(Pessoa pessoa, Local local) {
-		int barCounter = 0, numInscricoes = 0;
-		for(int i = 0; inscricoes.size(); i++) {
+		int numInscricoes = 0;
+		for(int i = 0; i < inscricoes.size(); i++) {
 			if(inscricoes.get(i).getPessoa() == pessoa) {
 				numInscricoes += 1;				
 				if(numInscricoes >= 5) {
@@ -82,11 +90,13 @@ public class Sistema {
 				return false;
 			}
 			
-			if(inscricoes.get(i).getLocal().isBar() && local.getLotacao() > )
+			if(inscricoes.get(i).getLocal().isBar() && ((Bar)local).getLotacao() < getNIncritosBar((Bar)local)) {
+			 return false;	
+			}
 			
 		}
-		
-		return true;
+		Inscricao i = new Inscricao(pessoa, local);
+		inscricoes.add(i);
 	}
 	
 }
