@@ -14,30 +14,79 @@ public class Sistema {
 	}
 	
 	public void criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
-		new Professor(tipoProfessor, nome, numCc, password, perfil);
+		Professor p = new Professor(tipoProfessor, nome, numCc, password, perfil);
+		pessoas.add(p);
 	}
 	
 	public void criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
-		new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
+		Funcionario f = new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
+		pessoas.add(f);
 	}
 	
 	public void criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
-		new Estudante( curso , nome, numCc, password, perfil);
+		Estudante e = new Estudante( curso , nome, numCc, password, perfil);
+		pessoas.add(e);
 	}
 	
 	public void criarBar(String coordenadas, int lotacao, double consumoMinimo) {
-		new Bar( coordenadas, lotacao, consumoMinimo);
+		Bar b = new Bar( coordenadas, lotacao, consumoMinimo);
+		locais.add(b);
 	}
 	
 	public void criarExposicao(String coordenadas, String formaArtistica, double custoBilhete) {
-		new Exposicao(coordenadas, formaArtistica, custoBilhete);
+		Exposicao e = new Exposicao(coordenadas, formaArtistica, custoBilhete);
+		locais.add(e);
 	}
 	
 	public void criarJardim(String coordenadas, double area) {
-		new Jardim(coordenadas, area);
+		Jardim j = new Jardim(coordenadas, area);
+		locais.add(j);
 	}
 	
 	public void criarAreaDesportiva(String coordenadas, ArrayList<String> desportos) {
-		new AreaDesportiva(coordenadas, desportos);
+		AreaDesportiva a = new AreaDesportiva(coordenadas, desportos);
+		locais.add(a);
 	}
+	
+	public ArrayList<Local> getLocais() {
+		return locais;
+	}
+	
+	public int getLotacaoDeBar(Bar bar) {
+		return bar.getLotacao();
+	}
+	
+	public ArrayList<Pessoa> getIncritosEmLocal(Local local){
+		ArrayList<Pessoa> helper = new ArrayList<Pessoa>(); 
+		for(int i = 0; i < inscricoes.size(); i++) {
+			if (inscricoes.get(i).getLocal().getCoordenadas()== local.getCoordenadas()) {
+				helper.add(inscricoes.get(i).getPessoa());
+			}
+		}
+		return helper;
+	}
+	
+	private inscritosBar()
+	
+	public boolean increverPessoa(Pessoa pessoa, Local local) {
+		int barCounter = 0, numInscricoes = 0;
+		for(int i = 0; inscricoes.size(); i++) {
+			if(inscricoes.get(i).getPessoa() == pessoa) {
+				numInscricoes += 1;				
+				if(numInscricoes >= 5) {
+					return false; //Quer dizer que ja te inscreveste em 5 locais e nao podes inscrever e mais nenhum
+				}
+			}
+			
+			if(inscricoes.get(i).getPessoa() == pessoa && inscricoes.get(i).getLocal() == local) {
+				return false;
+			}
+			
+			if(inscricoes.get(i).getLocal().isBar() && local.getLotacao() > )
+			
+		}
+		
+		return true;
+	}
+	
 }
