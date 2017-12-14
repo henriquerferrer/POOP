@@ -113,4 +113,79 @@ public class Sistema {
 		return true;
 	}
 	
+	public ArrayList<Local> getLocaisOrdenados() {
+		int counter = 0, max = 0, diff = 0, index = -1;
+		Local someLocal = null;
+		ArrayList<Local> helperLocais = new ArrayList<Local>();
+		ArrayList<Local> finalLocais = new ArrayList<Local>();
+		ArrayList<Integer> helperInscritos = new ArrayList<Integer>();
+		
+		for(int i = 0; i < locais.size(); i++) {
+			for(int p = 0; p < inscricoes.size(); p++) {
+				if(locais.get(i).equals(inscricoes.get(p).getLocal())) {
+					counter++;
+				}
+			}
+			helperLocais.add(locais.get(i));
+			helperInscritos.add(counter);
+			counter = 0;
+		}
+		
+		for(Integer o: helperInscritos) {	
+			if(o > max) {
+				max = o;
+			}
+		}
+		
+		for(int z = 0; z < helperLocais.size(); z++) {
+			for(int g = 0; g < helperInscritos.size(); g++) {
+				if(helperInscritos.get(g) == max) {
+					if(helperLocais.get(g).equals(someLocal)) {
+						continue;
+					}
+					else {
+						finalLocais.add(helperLocais.get(g));
+						someLocal = helperLocais.get(g);
+						max = helperInscritos.get(g);
+					}
+				}
+			}
+			int maxHelper =0;
+			for(int o = 0; 0 < helperInscritos.size(); o++) {
+				diff = max - helperInscritos.get(o);
+				if(helperInscritos.get(o) > maxHelper && diff > 0) {
+					maxHelper = o;
+				}
+				if(helperInscritos.get(o) > maxHelper && diff == 0) {
+					if(o > index) {
+						maxHelper = o;
+						index = o; 
+					}
+				}
+			}
+			max = maxHelper;
+		}
+		return finalLocais;
+		
+	}
+	
+	public double getMinReceitas() {
+		
+	}
+	
+	public ArrayList<Pessoa> getGuestList(Bar bar){
+		
+	}
+	
+	public int getGuestListSize(Bar bar) {
+		
+	}
+
+	public boolean isPlaceFull(Local place){
+		
+	}
+	
+	public int contarInscricoes(Pessoa pessoa) {
+		
+	}
 }
