@@ -15,4 +15,9 @@ public class AreaDesportiva extends Parque {
     private ArrayList<String> getDesportos() {
         return desportos;
     }
+	
+	@Override
+	public String toString() {
+		return "Area desportiva. " + super.toString(); 
+	}
 }

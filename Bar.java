@@ -20,4 +20,9 @@ public class Bar extends Local{
     public int getLotacao() {
         return lotacao;
     }
+	
+	@Override
+	public String toString() {
+		return "Bar. " + super.toString();
+	}
 }

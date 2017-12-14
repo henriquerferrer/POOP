@@ -52,4 +52,9 @@ public abstract class Local implements Serializable{
         }
         return false;
     }
+	
+	@Override
+	public String toString() {
+		return "Coordenadas: " + this.coordenadas;
+	}
 }

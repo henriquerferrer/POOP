@@ -13,4 +13,9 @@ public class Jardim extends Parque {
     public double getArea() {
         return area;
     }
+	
+	@Override
+	public String toString() {
+		return "Parque. " + super.toString();
+	}
 }
