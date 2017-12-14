@@ -96,7 +96,7 @@ public class Sistema {
 				}
 			}
 
-			if(inscricoes.get(i).getPessoa() == pessoa && inscricoes.get(i).getLocal().equals(local)) {
+			if(inscricoes.get(i).getPessoa().equals(pessoa) && inscricoes.get(i).getLocal().equals(local)) {
 				return false;
 			}
 
