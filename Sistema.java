@@ -131,6 +131,7 @@ public class Sistema {
 			counter = 0;
 		}
 		
+		//Ha alternativa
 		for(Integer o: helperInscritos) {	
 			if(o > max) {
 				max = o;
@@ -154,11 +155,11 @@ public class Sistema {
 			for(int o = 0; 0 < helperInscritos.size(); o++) {
 				diff = max - helperInscritos.get(o);
 				if(helperInscritos.get(o) > maxHelper && diff > 0) {
-					maxHelper = o;
+					maxHelper = helperInscritos.get(o);
 				}
 				if(helperInscritos.get(o) > maxHelper && diff == 0) {
 					if(o > index) {
-						maxHelper = o;
+						maxHelper = helperInscritos.get(o);
 						index = o; 
 					}
 				}
@@ -166,19 +167,59 @@ public class Sistema {
 			max = maxHelper;
 		}
 		return finalLocais;
-		
+		//Alternativa 'listToSort.sort(Comparator.comparing(listWithOrder::indexOf));'
 	}
 	
 	public double getMinReceitas() {
-		
-	}
-	
-	public ArrayList<Pessoa> getGuestList(Bar bar){
-		
+		double finalReceitas = 0;
+		for(int p = 0; p < inscricoes.size(); p++) {
+				if(inscricoes.get(p).getLocal().isBar()) {
+					finalReceitas += inscricoes.get(p).getLocal().getCustoMinimo();
+				}
+				if(inscricoes.get(p).getLocal().isExposicao() && inscricoes.get(p).getPessoa().isEstudante()) {
+					finalReceitas += inscricoes.get(p).getLocal().getCustoMinimo()*0.9;
+				}
+		}
+		return finalReceitas;
 	}
 	
 	public int getGuestListSize(Bar bar) {
+		int percentagem = 10;
+		int limiteTamanho = (int)bar.getLotacao()*(percentagem/100);
+		return limiteTamanho;
+	}
+	
+	public ArrayList<Pessoa> getGuestList(Bar bar){
+		ArrayList<Pessoa> finalGuestList = new ArrayList<Pessoa>();
+		//Preciso de saber a percetagem da lotacao para fazer o tamanho maximo da guest list 
+		int limiteTamanho = getGuestListSize(bar), tamanhoAtual=0;
 		
+		for(int p = 0; p < inscricoes.size(); p++) {
+			if(limiteTamanho > tamanhoAtual) {	
+				if(inscricoes.get(p).getLocal().equals(bar)){
+					if(inscricoes.get(p).getPessoa().getPerfil() == Perfil.BOEMIO) {
+						finalGuestList.add(inscricoes.get(p).getPessoa());
+						tamanhoAtual++;
+					}
+				}
+			}
+			else {
+				break;
+			}
+		}
+		
+		for(int p = 0; p < inscricoes.size(); p++) {
+			if(limiteTamanho > tamanhoAtual) {
+				if(inscricoes.get(p).getLocal().equals(bar)){
+					finalGuestList.add(inscricoes.get(p).getPessoa());
+					tamanhoAtual++;
+				}
+			}
+			else {
+				break;
+			}
+		}
+		return finalGuestList;
 	}
 
 	public boolean isPlaceFull(Local place){
@@ -186,6 +227,12 @@ public class Sistema {
 	}
 	
 	public int contarInscricoes(Pessoa pessoa) {
-		
+		int counter = 0;
+		for(int p = 0; p < inscricoes.size(); p++) {
+			if(inscricoes.get(p).getPessoa().equals(pessoa)) {
+				counter++;
+			}
+		}
+		return counter;
 	}
 }

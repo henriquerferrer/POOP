@@ -25,4 +25,5 @@ public class Estudante extends Pessoa {
 	public String getGuestListFormat() {
 		return super.getGuestListFormat() + " e " + this.curso;
 	}
+	
 }
