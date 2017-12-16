@@ -25,4 +25,9 @@ public class Bar extends Local{
 	public String toString() {
 		return "Bar. " + super.toString();
 	}
+
+	@Override
+	public String getDetails() {
+		return "Lotacao: " + lotacao + "\nConsumo Minimo: " + consumoMinimo;
+	}
 }

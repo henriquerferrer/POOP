@@ -20,4 +20,13 @@ public class AreaDesportiva extends Parque {
 	public String toString() {
 		return "Area desportiva. " + super.toString(); 
 	}
+
+	@Override
+	public String getDetails() {
+		String res = "Desportos:\n";
+		for(String s : desportos) {
+			res += s + " ";
+		}
+		return res;
+	}
 }

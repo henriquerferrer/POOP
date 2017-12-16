@@ -23,6 +23,11 @@ public class Exposicao extends Local{
 	
 	@Override
 	public String toString() {
-		return "Exposicao de " + this.formaArtistica + ". " + super.toString();
+		return "Exposicao. " + super.toString();
+	}
+
+	@Override
+	public String getDetails() {
+		return "Forma artistica: " + formaArtistica + "\nCusto do Bilhete: " + custoBilhete;
 	}
 }

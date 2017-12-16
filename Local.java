@@ -40,6 +40,8 @@ public abstract class Local implements Serializable{
     public boolean isExposicao() {
         return false;
     }
+	
+	public abstract String getDetails();
     
     @Override
     public boolean equals(Object other){
