@@ -84,16 +84,6 @@ public class Sistema {
 		return helper;
 	}
 	
-	private int getNIncritosLocal(Local l) {
-		int counter = 0;
-		for(int i = 0; i < inscricoes.size(); i++) {
-			if(inscricoes.get(i).getLocal().equals(l)) {
-				counter++;
-			}
-		}
-		return counter;
-	}
-	
 	public boolean increverPessoa(Pessoa pessoa, Local local) {
 		int numInscricoes = 0;
 		for(int i = 0; i < inscricoes.size(); i++) {
@@ -108,7 +98,7 @@ public class Sistema {
 				return false;
 			}
 			
-			if(inscricoes.get(i).getLocal().isBar() && ((Bar)local).getLotacao() < getNIncritosLocal(local)) {
+			if(inscricoes.get(i).getLocal().isBar() && ((Bar)local).getLotacao() < getNInscritosLocal(local)) {
 				return false;	
 			}
 		}
@@ -231,6 +221,20 @@ public class Sistema {
 		return false;
 	}
 	
+	private int getNInscritosLocal(Local l) {
+		int counter = 0;
+		for(int i = 0; i < inscricoes.size(); i++) {
+			if(inscricoes.get(i).getLocal().equals(l)) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
+	private int getNInscritosBar(Bar bar) {
+		return getNInscritosLocal(bar);
+	}
+	
 	public int contarInscricoes(Pessoa pessoa) {
 		int counter = 0;
 		for(int p = 0; p < inscricoes.size(); p++) {
@@ -239,5 +243,15 @@ public class Sistema {
 			}
 		}
 		return counter;
+	}
+	
+	public ArrayList<Local> getLocaisInscritos(Pessoa pessoa) {
+		ArrayList<Local> helper = new ArrayList<Local>();
+		for(int i = 0; i < inscricoes.size(); i++) {
+			if (inscricoes.get(i).getPessoa().equals(pessoa)) {
+				helper.add(inscricoes.get(i).getLocal());
+			}
+		}
+		return helper;
 	}
 }

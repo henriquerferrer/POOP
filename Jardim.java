@@ -18,4 +18,9 @@ public class Jardim extends Parque {
 	public String toString() {
 		return "Parque. " + super.toString();
 	}
+
+	@Override
+	public String getDetails() {
+		return "Area do Jardim: " + area;
+	}
 }
