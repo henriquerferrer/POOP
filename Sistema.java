@@ -111,9 +111,13 @@ public class Sistema {
 	}
 	
 	private int getNInscritosBar(Bar bar) {
+		return getNInscritos(bar);
+	}
+	
+	private int getNInscritos(Local l) {
 		int counter = 0;
 		for(int i = 0; i < inscricoes.size(); i++) {
-			if(inscricoes.get(i).getLocal() == bar) {
+			if(inscricoes.get(i).getLocal().equals(l)) {
 				counter = counter + 1;
 			}
 		}
@@ -125,6 +129,16 @@ public class Sistema {
 		for(int i = 0; i < inscricoes.size(); i++) {
 			if (inscricoes.get(i).getLocal().getCoordenadas()== local.getCoordenadas()) {
 				helper.add(inscricoes.get(i).getPessoa());
+			}
+		}
+		return helper;
+	}
+	
+	public ArrayList<Local> getLociasInscritos(Pessoa pessoa) {
+		ArrayList<Local> helper = new ArrayList<Local>();
+		for(int i = 0; i < inscricoes.size(); i++) {
+			if (inscricoes.get(i).getPessoa().equals(pessoa)) {
+				helper.add(inscricoes.get(i).getLocal());
 			}
 		}
 		return helper;
