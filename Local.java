@@ -34,7 +34,7 @@ public abstract class Local implements Serializable{
     }
 
     public boolean isBar() {
-        return true;
+        return false;
     }
 
     public boolean isExposicao() {
@@ -52,4 +52,9 @@ public abstract class Local implements Serializable{
         }
         return false;
     }
+	
+	@Override
+	public String toString() {
+		return "Coordenadas: " + this.coordenadas;
+	}
 }

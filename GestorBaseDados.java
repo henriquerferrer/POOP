@@ -21,8 +21,8 @@ public class GestorBaseDados {
 		
 		Jardim pq = new Jardim("2-3", 12);
 		
-		Inscricao i1 = new Inscricao(e1, pq);
-		Inscricao i2 = new Inscricao(e2, pq);
+		Inscricao i1 = new Inscricao(e1, pq, 0);
+		Inscricao i2 = new Inscricao(e2, pq, 1);
 		
 		gbd.savePessoa(e1);gbd.savePessoa(e2);gbd.savePessoa(f1);gbd.savePessoa(p1);
 		gbd.saveLocal(pq);

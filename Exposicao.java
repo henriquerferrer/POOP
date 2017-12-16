@@ -20,4 +20,14 @@ public class Exposicao extends Local{
     private String getFormaArtistica() {
         return formaArtistica;
     }
+    
+    @Override
+    public boolean isExposicao() {
+    	return true;
+    }
+	
+	@Override
+	public String toString() {
+		return "Exposicao de " + this.formaArtistica + ". " + super.toString();
+	}
 }

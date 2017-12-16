@@ -50,10 +50,13 @@ public abstract class Pessoa implements Serializable{
 	public Perfil getPerfil() {
 		return this.perfil;
 	}
-
+	
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+	
+	//TODO: METODO GET DISCONTO ESTUDANTE ONDE O UNICO QUE TEM E O ESTUDANTE QUE FAZ OVERRIDE O RESTO O DESCOTNO E 0 
+	
 	
 	public String getGuestListFormat() {
 		return this.nome + " " + this.perfil;
