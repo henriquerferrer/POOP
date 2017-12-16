@@ -139,7 +139,7 @@ public class Sistema {
 				}
 			}
 			int maxHelper = -1;
-			for(int o = 0; 0 < helperInscritos.size(); o++) {
+			for(int o = 0; o < helperInscritos.size(); o++) {
 				if(helperInscritos.get(o) > maxHelper && helperInscritos.get(o) < max) {
 					maxHelper = helperInscritos.get(o);
 				}
@@ -221,7 +221,7 @@ public class Sistema {
 		return false;
 	}
 	
-	private int getNInscritosLocal(Local l) {
+	public int getNInscritosLocal(Local l) {
 		int counter = 0;
 		for(int i = 0; i < inscricoes.size(); i++) {
 			if(inscricoes.get(i).getLocal().equals(l)) {
@@ -231,9 +231,6 @@ public class Sistema {
 		return counter;
 	}
 	
-	private int getNInscritosBar(Bar bar) {
-		return getNInscritosLocal(bar);
-	}
 	
 	public int contarInscricoes(Pessoa pessoa) {
 		int counter = 0;
@@ -253,5 +250,25 @@ public class Sistema {
 			}
 		}
 		return helper;
+	}
+	
+	public Pessoa getPessoaByCC(String numCC) {
+		for(Pessoa p : pessoas) {
+			if(p.getNumCc().equals(numCC)){
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public Pessoa autenticar(String numCC, String password) {
+		Pessoa p = getPessoaByCC(numCC);
+		if(p == null) {
+			return null;
+		}
+		if(p.getPassword().equals(password)) {
+			return p;
+		}
+		return null;
 	}
 }

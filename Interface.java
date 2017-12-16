@@ -59,9 +59,11 @@ public class Interface extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         logoutSubmit = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        locaisList = new javax.swing.JList(sis.getLocais().toArray(new Local[sis.getLocais().size()]));
+        locaisList = new javax.swing.JList(sis.getLocaisOrdenados().toArray(new Local[sis.getLocaisOrdenados().size()]));
         inscreverSubmit = new javax.swing.JButton();
         verInscricoesSubmit = new javax.swing.JButton();
+        getReceitasSubmit = new javax.swing.JButton();
+        getGuestListSubmit = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -198,6 +200,20 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        getReceitasSubmit.setText("Ver Receitas");
+        getReceitasSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getReceitasSubmitActionPerformed(evt);
+            }
+        });
+
+        getGuestListSubmit.setText("Ver GuestList");
+        getGuestListSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getGuestListSubmitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,7 +227,7 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(registarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(perfilProfessorField, 0, 197, Short.MAX_VALUE)
                     .addComponent(cursoField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 728, Short.MAX_VALUE))
+                .addGap(0, 751, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -241,38 +257,45 @@ public class Interface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel13)
                         .addGap(251, 251, 251)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10)
-                            .addComponent(CcLoginField)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(loginSubmit)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(logoutSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(passwordLoginField)))
+                        .addComponent(jLabel10)
+                        .addGap(85, 85, 85))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(verInscricoesSubmit)
+                                .addComponent(getReceitasSubmit)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane2)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inscreverSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                .addContainerGap())))))
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel12))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(loginSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(logoutSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(CcLoginField, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                            .addComponent(passwordLoginField))
+                                        .addGap(24, 24, 24))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(inscreverSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                                            .addComponent(verInscricoesSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(getGuestListSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(55, 55, 55)
@@ -315,16 +338,14 @@ public class Interface extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(loginSubmit)
-                            .addComponent(logoutSubmit))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(perfilFuncionarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                            .addComponent(logoutSubmit))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(verInscricoesSubmit)))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(perfilFuncionarioField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getReceitasSubmit))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -337,7 +358,10 @@ public class Interface extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(cursoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(inscreverSubmit))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(inscreverSubmit)
+                                .addGap(18, 18, 18)
+                                .addComponent(getGuestListSubmit)))
                         .addGap(18, 18, 18)
                         .addComponent(registarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(26, Short.MAX_VALUE))
@@ -426,12 +450,15 @@ public class Interface extends javax.swing.JFrame {
 		else {
 			informacaoScreen.setText("Nao foi possivel inscrever. Verifica se ainda tens espaço para inscriçoes ou se não te inscreveste neste local");
 		}
+		locaisList.setListData(sis.getLocaisOrdenados().toArray(new Local[sis.getLocaisOrdenados().size()]));
     }//GEN-LAST:event_inscreverSubmitActionPerformed
 
     private void locaisListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_locaisListValueChanged
         // TODO add your handling code here:
 		Local l = locaisList.getSelectedValue();
-		informacaoScreen.setText(l.toString() + "\n" + l.getDetails());
+		String res = l.toString() + "\n" + l.getDetails() + "\n";
+		res += "Inscritos: " + sis.getNInscritosLocal(l);
+		informacaoScreen.setText(res);
     }//GEN-LAST:event_locaisListValueChanged
 
     private void verInscricoesSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInscricoesSubmitActionPerformed
@@ -440,13 +467,40 @@ public class Interface extends javax.swing.JFrame {
 			informacaoScreen.setText("No Login No party");
 			return;
 		}
-		ArrayList<Local> meusLocais = sis.getLociasInscritos(pessoaLogada);
+		ArrayList<Local> meusLocais = sis.getLocaisInscritos(pessoaLogada);
 		String res = "Tens " + meusLocais.size() + " inscricoes\n";
 		for(int i=0; i<meusLocais.size(); i++) {
-			res += i + "\n" + meusLocais.get(i).getDetails() + "\n";
+			res += i+1 + "\n" + meusLocais.get(i).getDetails() + "\n";
 		}
 		informacaoScreen.setText(res);
     }//GEN-LAST:event_verInscricoesSubmitActionPerformed
+
+    private void getReceitasSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getReceitasSubmitActionPerformed
+        // TODO add your handling code here:
+		if(pessoaLogada == null) {
+			informacaoScreen.setText("No Login No party");
+			return;
+		}
+		double receitas = sis.getMinReceitas();
+		informacaoScreen.setText("As receitas até agora são de: " + receitas + " euros.");
+    }//GEN-LAST:event_getReceitasSubmitActionPerformed
+
+    private void getGuestListSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getGuestListSubmitActionPerformed
+        // TODO add your handling code here:
+		Local l = locaisList.getSelectedValue();
+		if(!l.isBar()) {
+			informacaoScreen.setText("Só existem guestLists para bares");
+		}
+		else {
+			ArrayList<Pessoa> guestList = sis.getGuestList((Bar)l);
+			String res = "";
+			for(Pessoa p : guestList) {
+				res += p.getGuestListFormat() + "\n";
+			}
+			informacaoScreen.setText(res);
+		}
+		
+    }//GEN-LAST:event_getGuestListSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -539,6 +593,8 @@ public class Interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CcLoginField;
     private javax.swing.JComboBox<String> cursoField;
+    private javax.swing.JButton getGuestListSubmit;
+    private javax.swing.JButton getReceitasSubmit;
     private javax.swing.JTextArea informacaoScreen;
     private javax.swing.JButton inscreverSubmit;
     private javax.swing.JDialog jDialog1;
