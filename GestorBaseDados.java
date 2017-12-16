@@ -12,49 +12,24 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Classe que cria uma abstracao para criar e ler ficheiros de objeto (usados na plataforma).
+ * Lê tambem um ficheiro de configuração com Locais e Pessoas que podem ser alterados. Estes dados são gravados na base de dados assim que há a primeira inscricao.
+ * @author JoaquimFerrer Henrique Ferrer
+ */
 public class GestorBaseDados {
 	private final String pessoasPath = "./bd/pessoas/";
 	private final String locaisPath = "./bd/locais/";
 	private final String inscricoesPath = "./bd/inscricoes/";
 	private final String informacaoInicialPath = "./bd/InformacaoInicial.txt";
-	
-	/*
-	public static void main(String[] args) {
-		GestorBaseDados gbd= new GestorBaseDados();
-		Estudante e1 = new Estudante(CursoDei.LEI, "Joaquim Ferrer", "123", "benfica", Perfil.BOEMIO);
-		Estudante e2 = new Estudante(CursoDei.LEI, "Joaquim Joao", "1234", "benfica", Perfil.BOEMIO);
-		Funcionario f1 = new Funcionario(TipoFuncionario.FULLTIME , "Adelbio Silva", "1", "password", Perfil.BOEMIO);
-		Professor p1 = new Professor(TipoProfessor.ASSOCIADO, "Joao Simoes", "12", "passwrod", Perfil.BOEMIO);
-		
-		Jardim pq = new Jardim("2-3", 12);
-		
-		Inscricao i1 = new Inscricao(e1, pq, 0);
-		Inscricao i2 = new Inscricao(e2, pq, 1);
-		
-		gbd.savePessoa(e1);gbd.savePessoa(e2);gbd.savePessoa(f1);gbd.savePessoa(p1);
-		gbd.saveLocal(pq);
-		gbd.saveInscricao(i1); gbd.saveInscricao(i2);
-		
-		ArrayList<Pessoa> pessoas = gbd.loadPessoas();
-		ArrayList<Local> locais = gbd.loadLocais();
-		ArrayList<Inscricao> inscricoes = gbd.loadInscricoes();
-		
-		for(Pessoa p : pessoas) {
-			System.out.println(p.getNome());
-		}
-		
-		for(Local l : locais) {
-			System.out.println(l.getCoordenadas());
-		}
-		
-		for(Inscricao i : inscricoes) {
-			System.out.println(i.getPessoa().getNome());
-		}
-		
-	}*/
+
 	
 	public GestorBaseDados() {}
 	
+	/**
+	 * Lê as pessoas escritas na base de dados e devolve-os-
+	 * @return Pessoas na base de dados
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Pessoa> loadPessoas() {
 		ArrayList<Pessoa> res = new ArrayList<Pessoa>();
@@ -67,6 +42,10 @@ public class GestorBaseDados {
 		return res;
 	}
 	
+	/**
+	 * Lê os locais escritos na base de dados e devolve-os
+	 * @return Locais na base de dados
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Local> loadLocais() {
 		ArrayList<Local> res = new ArrayList<Local>();
@@ -79,17 +58,31 @@ public class GestorBaseDados {
 		return res;
 	}
 	
+	/**
+	 * Lê as inscricoes na base de dados e devolve-os
+	 * @return Inscricoes na base de dados.
+	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<Inscricao> loadInscricoes() {
 		return (ArrayList<Inscricao>) readAllFromPath(inscricoesPath);
 	}
 	
+	/**
+	 * Guarda uma pessoa na base de dados.
+	 * @param p Pessoa a guardar
+	 * @return Se conseguiu guardar a pessoa com sucesso
+	 */
 	public boolean savePessoa(Pessoa p) {
     	return saveObject(p, pessoasPath + p.getNumCc());
     }
 	
 	
 	//SO FUNCIONA SEM BUGS SE FOR IMPOSSIVEL REMOVER INSCRICOES
+	/**
+	 * Guarda uma inscricao na base de dados. Se não ainda houver inscricoes então guarda todos os objectos descritos no ficheiro de configuracao na base de dados.
+	 * @param i Inscricao a guardar
+	 * @return Se conseguiu guardar a inscricao com sucesso
+	 */
 	public boolean saveInscricao(Inscricao i) {
 		File dir = new File(inscricoesPath);
 		File[] directoryListing = dir.listFiles();
@@ -106,10 +99,16 @@ public class GestorBaseDados {
     	return saveObject(i, inscricoesPath + i.getPessoa().getNumCc() + i.getLocal().getCoordenadas());
     }
 	
+	/**
+	 *
+	 * @param l Local a guardar
+	 * @return Se conseguiu guardar o Local com sucesso.
+	 */
 	public boolean saveLocal(Local l) {
     	return saveObject(l, locaisPath + l.getCoordenadas());
     }
 	
+	//Guarda um objeto no path especificado
 	private boolean saveObject(Object o, String path) {
 		try {
 	        FileOutputStream fileStream = new FileOutputStream(new File(path));
@@ -125,6 +124,7 @@ public class GestorBaseDados {
 		return true;
 	}
 	
+	//Le todos os objetos dum ficheiro
 	private ArrayList<?> readAllFromPath(String path) {
 		ArrayList<Object> res = new ArrayList<Object>();
     	File dir = new File(path);
@@ -136,6 +136,7 @@ public class GestorBaseDados {
 		return res;
 	}
 	
+	//Le objeto dum ficheiro e devolve-o
 	private Object readObjectFromFile(File f) {	
     	try {
 			FileInputStream fs = new FileInputStream(f);
@@ -149,6 +150,9 @@ public class GestorBaseDados {
 		}
 	}
 	
+	
+	//Le os locais do ficheiro de configuraçoes e devolve-os.
+	//Os locais devem ser precedidos por uma linha "LOCAIS:"
 	private ArrayList<Local> parseLocais() {
 		ArrayList<Local> res = new ArrayList<Local>();
 		try {
@@ -230,7 +234,7 @@ public class GestorBaseDados {
 		}
 		return res;
 	}
-	
+	//Transforma uma string no tipo de professor correspondente
 	private TipoProfessor getTipoProfessor(String str) {
         if(str.equals("Auxiliar")) {
             return TipoProfessor.AUXILIAR;
@@ -241,8 +245,8 @@ public class GestorBaseDados {
         else {
             return TipoProfessor.ASSOCIADO;
         }
-   }
-    
+	}
+    //Transforma uma string no perfil correspondente
     private Perfil getPerfil(String str) {
         if(str.equals("BOEMIO")) {
             return Perfil.BOEMIO;
@@ -256,8 +260,9 @@ public class GestorBaseDados {
         else {
             return Perfil.DESPORTIVO;
         }
-   }
+	}
     
+	//Transforma uma string no tipo de funcionario correspondente
     private TipoFuncionario getTipoFuncionario(String str) {
         if(str.equals("PARTTIME")) {
             return TipoFuncionario.FULLTIME;
@@ -267,6 +272,7 @@ public class GestorBaseDados {
         }
    }
     
+	//Transforma uma string no curso do dei correspondente
     private CursoDei getCursoDei(String str) {
         if(str.equals("LEI")) {
             return CursoDei.LEI;

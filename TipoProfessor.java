@@ -1,5 +1,23 @@
 package poop;
 
+/**
+ *
+ * @author JoaquimFerrer
+ */
 public enum TipoProfessor {
-	AUXILIAR, ASSOCIADO, CATEDRATICO
+
+	/**
+	 * TIpo de professor Auxiliar.
+	 */
+	AUXILIAR,
+
+	/**
+	 * Tipo de professor Associado.
+	 */
+	ASSOCIADO,
+
+	/**
+	 *Tipo de professor Catedrático.
+	 */
+	CATEDRATICO
 }

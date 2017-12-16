@@ -2,6 +2,10 @@ package poop;
 
 import java.io.Serializable;
 
+/**
+ * Classe que representa uma Pessoa.
+ * @author JoaquimFerrer Henrique Ferrer
+ */
 public abstract class Pessoa implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -11,53 +15,67 @@ public abstract class Pessoa implements Serializable{
 	private Perfil perfil;
 	private double discontoEmExibicoes;
 
+	/**
+	 * Único construtor.
+	 * @param nome Nome da Pessoa
+	 * @param numCc Número do cartão de cidadão.
+	 * @param password Password para a plataforma.
+	 * @param perfil Perfil
+	 */
 	public Pessoa(String nome, String numCc, String password, Perfil perfil) {
-		this.setNome(nome);
+		this.nome = nome;
 		this.numCc = numCc;
 		this.password = password;
 		this.perfil = perfil;
 	}
 	
+	/**
+	 * Retorna se é estudante.
+	 * @return
+	 */
 	public boolean isEstudante() {
 		return false;
 	}
 	
-
+	/**
+	 * Obtém nome da pessoa.
+	 * @return Nome
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	
+	/**
+	 * Obtém o número de cartão de cidadão da Pessoa.
+	 * @return Número do cartão de cidadão.
+	 */
 	public String getNumCc() {
 		return this.numCc;
 	}
-
-	public void setNumCc(String numCc) {
-		this.numCc = numCc;
-	}
 	
+	/**
+	 * Obtém a password da pessoa.
+	 * @return Password
+	 */
 	protected String getPassword() {
 		return this.password;
 	}
-
-	protected void setPassword(String password) {
-		this.password = password;
-	}
 	
+	/**
+	 * Obtém perfil da pessoa.
+	 * @return Perfil
+	 */
 	public Perfil getPerfil() {
 		return this.perfil;
 	}
 	
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
-	
 	//TODO: METODO GET DISCONTO ESTUDANTE ONDE O UNICO QUE TEM E O ESTUDANTE QUE FAZ OVERRIDE O RESTO O DESCOTNO E 0 
 	
-	
+	/**
+	 * Retorna os detalhes da pessoa apropriado para a guest list.
+	 * @return o Detalhes para a guest List.
+	 */
 	public String getGuestListFormat() {
 		return this.nome + " " + this.perfil;
 	}
@@ -74,14 +92,5 @@ public abstract class Pessoa implements Serializable{
 		return false;
 	}
 	
-	/*public static void main(String [] args) {
-		Funcionario f = new Funcionario(TipoFuncionario.PARTTIME, "Joao", "1234567890", "miste123", Perfil.BOEMIO);
-		Estudante e = new Estudante(CursoDei.LEI, "Pedro", "0987654321", "miste1234", Perfil.BOEMIO);
-		Professor p = new Professor(TipoProfessor.ASSOCIADO, "Mario", "0934626326", "miste12345", Perfil.BOEMIO);
-		System.out.println("hello its meeeeeeee, helooooooo from the otter side");
-		System.out.println(f.getGuestListFormat());
-		System.out.println(e.getGuestListFormat());
-		System.out.println(p.getGuestListFormat());
-	}*/
 }
 	

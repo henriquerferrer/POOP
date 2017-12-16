@@ -1,5 +1,18 @@
 package poop;
 
+/**
+ *
+ * @author JoaquimFerrer
+ */
 public enum TipoFuncionario {
-	PARTTIME, FULLTIME
+
+	/**
+	 *Tipo de funcionário part-time.
+	 */
+	PARTTIME,
+
+	/**
+	 *Tipo de funcionário full-time.
+	 */
+	FULLTIME
 }

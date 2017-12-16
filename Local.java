@@ -3,44 +3,59 @@ package poop;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author JoaquimFerrer Henrique Ferrer
+ */
 public abstract class Local implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String coordenadas;
 
-    public static void main(String args[]) {
-        ArrayList<Local> locais = new ArrayList<Local>();
-        locais.add(new Bar("junto do cafe", 20, 5.0));
-        locais.add(new Exposicao("junto do cafe", "escultura", 10.0));
-        locais.add(new Exposicao("junto do cafe", "pintura", 20.0));
-        locais.add(new Jardim("junto do cafe", 50));
-        double counter = 0;
-        for(Local l : locais) {
-            counter += l.getCustoMinimo();
-        }
-        System.out.println(counter);
-    }
-
-    public Local(String coordenadas) {
+	/**
+	 * Unico Construtor
+	 * @param coordenadas Coordenadas do Local
+	 */
+	public Local(String coordenadas) {
         this.coordenadas = coordenadas;
     }
 
-    public String getCoordenadas() {
+	/**
+	 * Obtém as coordenadas do Local.
+	 * @return Coordenadas
+	 */
+	public String getCoordenadas() {
         return coordenadas;
     }
 
-    public double getCustoMinimo() {
+	/**
+	 * Obtém o custo duma inscrição neste local.
+	 * @return valor que custa uma inscrição neste local.
+	 */
+	public double getCustoMinimo() {
         return 0;
     }
 
-    public boolean isBar() {
+	/**
+	 * Retorna se é um bar.
+	 * @return 
+	 */
+	public boolean isBar() {
         return false;
     }
 
-    public boolean isExposicao() {
+	/**
+	 * Retorna se é uma exposição.
+	 * @return
+	 */
+	public boolean isExposicao() {
         return false;
     }
 	
+	/**
+	 * Retorna os detalhes dum local
+	 * @return Os detalhes.
+	 */
 	public abstract String getDetails();
     
     @Override
