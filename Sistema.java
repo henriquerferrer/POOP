@@ -14,7 +14,7 @@ public class Sistema {
 	private GestorBaseDados gestorBD;
 	private final int percentagemGuestList = 10;
 	private final double discontoEstExposicao = 0.1;
-	private final int numeroMaximoInsxcricoes = 5;
+	private final int numeroMaximoInscricoes = 5;
 	 
 	/**
 	 *
@@ -182,7 +182,7 @@ public class Sistema {
 		int numInscricoes = 0;
 		for(int i = 0; i < inscricoes.size(); i++) {
 			if(inscricoes.get(i).getPessoa().equals(pessoa)) {			
-				if(numInscricoes + 1 > numeroMaximoInsxcricoes) {
+				if(numInscricoes + 1 > numeroMaximoInscricoes) {
 					return false; //Quer dizer que ja te inscreveste em 5 locais e nao podes inscrever e mais nenhum
 				}
 				numInscricoes++;
