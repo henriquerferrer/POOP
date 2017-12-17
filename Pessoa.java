@@ -84,12 +84,17 @@ public abstract class Pessoa implements Serializable{
 	public boolean equals(Object other){
 		if (other == null) return false;
 		if (other == this) return true;
-		if (!(other instanceof Local))return false;
+		if (!(other instanceof Pessoa))return false;
 		Pessoa pessoa = (Pessoa)other;
 		if(pessoa.getNumCc().equals(this.numCc)) {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return this.numCc + " " + this.nome;
 	}
 	
 }

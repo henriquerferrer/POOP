@@ -59,7 +59,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         logoutSubmit = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        locaisList = new javax.swing.JList(sis.getLocaisOrdenados().toArray(new Local[sis.getLocaisOrdenados().size()]));
+        locaisList = new javax.swing.JList();
         inscreverSubmit = new javax.swing.JButton();
         verInscricoesSubmit = new javax.swing.JButton();
         getReceitasSubmit = new javax.swing.JButton();
@@ -389,18 +389,45 @@ public class Interface extends javax.swing.JFrame {
 
     private void registarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registarButtonActionPerformed
         // TODO add your handling code here:
+    	if(!(pessoaLogada == null)) {
+			informacaoScreen.setText("Faz log out primeiro!");
+			return;
+		}
+    	
         String nome = nomeField.getText();
         String numCC = numeroCCField.getText();
         char[] password = passwordField.getPassword();
+        if(nome.equals("") || numCC.equals("") || password.length == 0) {
+        	informacaoScreen.setText("Preencha todos os campos prease");
+        	return;
+
+        }
         Perfil perfil = getPerfil(String.valueOf(perfilField.getSelectedItem()));
         if(String.valueOf(tipoField.getSelectedItem()).equals("Professor")) {
-            sis.criarProfessor(getTipoProfessor(String.valueOf(perfilProfessorField.getSelectedItem())), nome, numCC, String.valueOf(password), perfil);
+            if(sis.criarProfessor(getTipoProfessor(String.valueOf(perfilProfessorField.getSelectedItem())), nome, numCC, String.valueOf(password), perfil) == false) {
+            	informacaoScreen.setText("user com o mesmo cc ja tinha sido criado");
+            }
+            else {
+            	informacaoScreen.setText("Criado novo user");
+        
+            }
         }
         else if(String.valueOf(tipoField.getSelectedItem()).equals("Aluno")) {
-            sis.criarEstudante(getCursoDei(String.valueOf(cursoField.getSelectedItem())), nome, numCC, String.valueOf(password), perfil);
+            if(sis.criarEstudante(getCursoDei(String.valueOf(cursoField.getSelectedItem())), nome, numCC, String.valueOf(password), perfil) == false) {
+            	informacaoScreen.setText("user com o mesmo cc ja tinha sido criado");
+        	}
+        	else {
+        		informacaoScreen.setText("Criado novo user");
+        	}
         }
         else {
-            sis.criarFuncionario(getTipoFuncionario(String.valueOf(perfilFuncionarioField.getSelectedItem())), nome, numCC, String.valueOf(password), perfil);
+            if(sis.criarFuncionario(getTipoFuncionario(String.valueOf(perfilFuncionarioField.getSelectedItem())), nome, numCC, String.valueOf(password), perfil) == false) {
+            	informacaoScreen.setText("user com o mesmo cc ja tinha sido criado");
+        	}
+            else {
+            	informacaoScreen.setText("Criado novo user");
+        
+            }
         }
     }//GEN-LAST:event_registarButtonActionPerformed
 
@@ -412,6 +439,11 @@ public class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
         String numCC = CcLoginField.getText();
         String password = String.valueOf(passwordLoginField.getPassword());
+        
+        if(!(pessoaLogada == null)) {
+			informacaoScreen.setText("Faz logout primeiro!");
+			return;
+		}
        
         pessoaLogada = sis.autenticar(numCC, password);
         if(pessoaLogada == null) {
@@ -419,6 +451,7 @@ public class Interface extends javax.swing.JFrame {
         }
         else {
             informacaoScreen.setText("Bem vindo " + pessoaLogada.getNome());
+            locaisList.setListData(sis.getLocaisOrdenados().toArray(new Local[sis.getLocaisOrdenados().size()]));
         }
     }//GEN-LAST:event_loginSubmitActionPerformed
 
@@ -431,6 +464,7 @@ public class Interface extends javax.swing.JFrame {
         if(pessoaLogada != null) {
             informacaoScreen.setText("So faz falta quem cá está " + pessoaLogada.getNome());
             pessoaLogada = null;
+            locaisList.setListData(new Local[0]);
         }
         else {
             informacaoScreen.setText("Quem está aí?");
@@ -444,18 +478,26 @@ public class Interface extends javax.swing.JFrame {
 			return;
 		}
 		Local l = locaisList.getSelectedValue();
+		if(l == null) {
+			informacaoScreen.setText("Nenhum local selecionado");
+			return;
+		}
 		if(sis.increverPessoa(pessoaLogada, l)) {
 			informacaoScreen.setText("Inscrição efetuada com sucesso");
 		}
 		else {
 			informacaoScreen.setText("Nao foi possivel inscrever. Verifica se ainda tens espaço para inscriçoes ou se não te inscreveste neste local");
 		}
+		
 		locaisList.setListData(sis.getLocaisOrdenados().toArray(new Local[sis.getLocaisOrdenados().size()]));
     }//GEN-LAST:event_inscreverSubmitActionPerformed
 
     private void locaisListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_locaisListValueChanged
         // TODO add your handling code here:
 		Local l = locaisList.getSelectedValue();
+		if(l == null) {
+			return;
+		}
 		String res = l.toString() + "\n" + l.getDetails() + "\n";
 		res += "Inscritos: " + sis.getNInscritosLocal(l);
 		informacaoScreen.setText(res);
@@ -488,6 +530,10 @@ public class Interface extends javax.swing.JFrame {
     private void getGuestListSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getGuestListSubmitActionPerformed
         // TODO add your handling code here:
 		Local l = locaisList.getSelectedValue();
+		if(l == null) {
+			informacaoScreen.setText("nao escolheste nenhum bar");
+			return;
+		}
 		if(!l.isBar()) {
 			informacaoScreen.setText("Só existem guestLists para bares");
 		}
@@ -498,6 +544,9 @@ public class Interface extends javax.swing.JFrame {
 				res += p.getGuestListFormat() + "\n";
 			}
 			informacaoScreen.setText(res);
+		}
+		if(sis.getGuestListSize((Bar)l) == 0) {
+			informacaoScreen.setText("Para este bar nao ha guest list");
 		}
 		
     }//GEN-LAST:event_getGuestListSubmitActionPerformed

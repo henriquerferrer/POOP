@@ -45,7 +45,7 @@ public class Bar extends Local{
 	 */
 	@Override
     public boolean isBar() {
-    	return false;
+    	return true;
     }
 	
 	@Override

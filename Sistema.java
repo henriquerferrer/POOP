@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Classe de Sistema que gere a lógica da plataforma
+ * Classe de Sistema que gere a lÃ³gica da plataforma
  * @author JoaquimFerrer Henrique Ferrer
  */
 public class Sistema {
@@ -26,7 +26,7 @@ public class Sistema {
 		this.locais = gestorBD.loadLocais();
 		this.pessoas = gestorBD.loadPessoas();
 		
-		//Faz sort por ID (Data de criaçao)
+		//Faz sort por ID (Data de criaÃ§ao)
 		Collections.sort(inscricoes);
 	}
 	
@@ -37,50 +37,68 @@ public class Sistema {
 	 *Cria um professor
 	 * @param tipoProfessor Tipo de professor.
 	 * @param nome Nome.
-	 * @param numCc Número de cartão de cidadão.
+	 * @param numCc NÃºmero de cartÃ£o de cidadÃ£o.
 	 * @param password Password para a plataforma.
 	 * @param perfil Perfil.
 	 */
 	
-	public void criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
-		Professor p = new Professor(tipoProfessor, nome, numCc, password, perfil);
-		pessoas.add(p);
-		gestorBD.savePessoa(p);
+	public boolean criarProfessor(TipoProfessor tipoProfessor, String nome, String numCc, String password, Perfil perfil) {
+		if(getPessoaByCC(numCc) == null) {
+			Professor p = new Professor(tipoProfessor, nome, numCc, password, perfil);
+			pessoas.add(p);
+			gestorBD.savePessoa(p);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**
-	 * Cria um Funcionário
-	 * @param tipoFuncionario Tipo de funcionário.
+	 * Cria um FuncionÃ¡rio
+	 * @param tipoFuncionario Tipo de funcionÃ¡rio.
 	 * @param nome Nome.
-	 * @param numCc Número de cartão de cidadão.
+	 * @param numCc NÃºmero de cartÃ£o de cidadÃ£o.
 	 * @param password Password usada para a plataforma
 	 * @param perfil Perdil.
 	 */
-	public void criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
-		Funcionario f = new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
-		pessoas.add(f);
-		gestorBD.savePessoa(f);
+	public boolean criarFuncionario(TipoFuncionario tipoFuncionario, String nome, String numCc, String password, Perfil perfil) {
+		if(getPessoaByCC(numCc) == null) {
+			Funcionario f = new Funcionario( tipoFuncionario, nome, numCc, password, perfil);
+			pessoas.add(f);
+			gestorBD.savePessoa(f);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**
 	 * Cria um Estudante
 	 * @param curso Curso do estudante.
 	 * @param nome Nome.
-	 * @param numCc Número de cartão de cidadão.
+	 * @param numCc NÃºmero de cartÃ£o de cidadÃ£o.
 	 * @param password Password usada para a plataforma.
 	 * @param perfil Perfil.
 	 */
-	public void criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
-		Estudante e = new Estudante( curso , nome, numCc, password, perfil);
-		pessoas.add(e);
-		gestorBD.savePessoa(e);
+	public boolean criarEstudante(CursoDei curso , String nome, String numCc, String password, Perfil perfil) {
+		if(getPessoaByCC(numCc) == null) {
+			Estudante e = new Estudante( curso , nome, numCc, password, perfil);
+			pessoas.add(e);
+			gestorBD.savePessoa(e);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**
 	 * Cria um Bar
 	 * @param coordenadas Coordenadas do Local.
-	 * @param lotacao Lotaçao máxima do bar.
-	 * @param consumoMinimo Consumo mínimo para entrar no bar.
+	 * @param lotacao LotaÃ§ao mÃ¡xima do bar.
+	 * @param consumoMinimo Consumo mÃ­nimo para entrar no bar.
 	 */
 	public void criarBar(String coordenadas, int lotacao, double consumoMinimo) {
 		Bar b = new Bar( coordenadas, lotacao, consumoMinimo);
@@ -89,10 +107,10 @@ public class Sistema {
 	}
 	
 	/**
-	 * Cria uma exposição.
+	 * Cria uma exposiÃ§Ã£o.
 	 * @param coordenadas Coordenadas do local.
-	 * @param formaArtistica Forma artística da exposição.
-	 * @param custoBilhete Custo de cada builhete para a exposição.
+	 * @param formaArtistica Forma artÃ­stica da exposiÃ§Ã£o.
+	 * @param custoBilhete Custo de cada builhete para a exposiÃ§Ã£o.
 	 */
 	public void criarExposicao(String coordenadas, String formaArtistica, double custoBilhete) {
 		Exposicao e = new Exposicao(coordenadas, formaArtistica, custoBilhete);
@@ -103,7 +121,7 @@ public class Sistema {
 	/**
 	 * Cria um Jardim.
 	 * @param coordenadas Coordenadas do Local.
-	 * @param area Área do jardim.
+	 * @param area Ã�rea do jardim.
 	 */
 	public void criarJardim(String coordenadas, double area) {
 		Jardim j = new Jardim(coordenadas, area);
@@ -112,9 +130,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * Cria uma área desportiva
+	 * Cria uma Ã¡rea desportiva
 	 * @param coordenadas Coordenadas do Local.
-	 * @param desportos Desportos que se praticam na área desportiva.
+	 * @param desportos Desportos que se praticam na Ã¡rea desportiva.
 	 */
 	public void criarAreaDesportiva(String coordenadas, ArrayList<String> desportos) {
 		AreaDesportiva a = new AreaDesportiva(coordenadas, desportos);
@@ -131,7 +149,7 @@ public class Sistema {
 	}
 	
 	/**
-	 * Retorna a locatação máxima dum bar.
+	 * Retorna a locataÃ§Ã£o mÃ¡xima dum bar.
 	 * @param bar Bar.
 	 * @return
 	 */
@@ -140,7 +158,7 @@ public class Sistema {
 	}
 	
 	/**
-	 * Retorna pessoas inscritas no local. A ordem é não é especificada.
+	 * Retorna pessoas inscritas no local. A ordem Ã© nÃ£o Ã© especificada.
 	 * @param local Local.
 	 * @return Pessoas inscritas no local.
 	 */
@@ -155,10 +173,10 @@ public class Sistema {
 	}
 	
 	/**
-	 * Cria uma inscrição duma pessoa num local. Verifica se a pessoa já tem 5 inscrições, se já tem uma inscrição nesse Local, ou se o sítio onde se vai inscrever está cheio.
-	 * @param pessoa Pessoa que se está a inscrever.
+	 * Cria uma inscriÃ§Ã£o duma pessoa num local. Verifica se a pessoa jÃ¡ tem 5 inscriÃ§Ãµes, se jÃ¡ tem uma inscriÃ§Ã£o nesse Local, ou se o sÃ­tio onde se vai inscrever estÃ¡ cheio.
+	 * @param pessoa Pessoa que se estÃ¡ a inscrever.
 	 * @param local Local onde se vai inscrever.
-	 * @return Se a inscrição foi bem sucedida.
+	 * @return Se a inscriÃ§Ã£o foi bem sucedida.
 	 */
 	public boolean increverPessoa(Pessoa pessoa, Local local) {
 		int numInscricoes = 0;
@@ -173,11 +191,12 @@ public class Sistema {
 			if(inscricoes.get(i).getPessoa().equals(pessoa) && inscricoes.get(i).getLocal().equals(local)) {
 				return false;
 			}
-			
-			if(inscricoes.get(i).getLocal().isBar() && ((Bar)local).getLotacao() < getNInscritosLocal(local)) {
-				return false;	
-			}
 		}
+		
+		if(local.isBar() && ((Bar)local).getLotacao() < getNInscritosLocal(local)) {
+			return false;	
+		}
+		
 		Inscricao i = new Inscricao(pessoa, local, inscricoes.size());
 		inscricoes.add(i);
 		gestorBD.saveInscricao(i);
@@ -185,7 +204,7 @@ public class Sistema {
 	}
 	
 	/**
-	 * Retorna os locais ordenados por número de isncrições que têm. Utiliza um selection sort.
+	 * Retorna os locais ordenados por nÃºmero de isncriÃ§Ãµes que tÃªm. Utiliza um selection sort.
 	 * @return Locais ordenados.
 	 */
 	public ArrayList<Local> getLocaisOrdenados() {
@@ -233,7 +252,7 @@ public class Sistema {
 	//TODO: Add polimorfism to this. Remeber to remove the discounts with students and expositions
 
 	/**
-	  Obtém as receitas das inscrições feitas até à data.
+	  ObtÃ©m as receitas das inscriÃ§Ãµes feitas atÃ© Ã  data.
 	 * @return Valor das receitas.
 	 */
 	public double getMinReceitas() {
@@ -245,22 +264,25 @@ public class Sistema {
 			if(inscricoes.get(p).getLocal().isExposicao() && inscricoes.get(p).getPessoa().isEstudante()) {
 				finalReceitas += inscricoes.get(p).getLocal().getCustoMinimo() * (1-discontoEstExposicao);
 			}
+			if(inscricoes.get(p).getLocal().isExposicao() && !(inscricoes.get(p).getPessoa().isEstudante())) {
+				finalReceitas += inscricoes.get(p).getLocal().getCustoMinimo();
+			}
 		}
 		return finalReceitas;
 	}
 	
 	/**
-	 * Obtém o tamanho da guest list dum bar.
+	 * ObtÃ©m o tamanho da guest list dum bar.
 	 * @param bar
 	 * @return Tamanho da guest list.
 	 */
 	public int getGuestListSize(Bar bar) {
-		int limiteTamanho = (int)bar.getLotacao()*(percentagemGuestList/100);
+		int limiteTamanho = (int)(bar.getLotacao()*(percentagemGuestList/100.0));
 		return limiteTamanho;
 	}
 	
 	/**
-	 * Gera a guest list dum bar. Dá prioridade a pessoas com perfil boémio e depois a pessoas que se inscreveram antes.
+	 * Gera a guest list dum bar. DÃ¡ prioridade a pessoas com perfil boÃ©mio e depois a pessoas que se inscreveram antes.
 	 * @param bar Bar
 	 * @return Pessoas na Guest list.
 	 */
@@ -286,6 +308,7 @@ public class Sistema {
 				if(inscricoes.get(p).getLocal().equals(bar) && 
 				!(inscricoes.get(p).getPessoa().getPerfil() == Perfil.BOEMIO)){
 					finalGuestList.add(inscricoes.get(p).getPessoa());
+					System.out.println(inscricoes.get(p).getPessoa());
 					tamanhoAtual++;
 				}
 			}
@@ -297,9 +320,9 @@ public class Sistema {
 	}
 
 	/**
-	 * Verifica se um sítio não pode conter mais inscrições
+	 * Verifica se um sÃ­tio nÃ£o pode conter mais inscriÃ§Ãµes
 	 * @param place Local
-	 * @return Se não pode conter mais inscrições.
+	 * @return Se nÃ£o pode conter mais inscriÃ§Ãµes.
 	 */
 	public boolean isPlaceFull(Local place){
 		int counter = 0;
@@ -322,9 +345,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * Retorna o número de inscritos num local.
+	 * Retorna o nÃºmero de inscritos num local.
 	 * @param l Local
-	 * @return Número de inscritos.
+	 * @return NÃºmero de inscritos.
 	 */
 	public int getNInscritosLocal(Local l) {
 		int counter = 0;
@@ -337,9 +360,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * Conta isncrições duma Pessoa
+	 * Conta isncriÃ§Ãµes duma Pessoa
 	 * @param pessoa Pessoa
-	 * @return Número de inscrições.
+	 * @return NÃºmero de inscriÃ§Ãµes.
 	 */
 	public int contarInscricoes(Pessoa pessoa) {
 		int counter = 0;
@@ -367,9 +390,9 @@ public class Sistema {
 	}
 	
 	/**
-	 * Descobre uma pessoa a quem pertença um numero de cartao de cidadão. Caso não exista retorna null. 
-	 * @param numCC Número de cartão de cidadão.
-	 * @return Pessoa ou null se numCC não existir.
+	 * Descobre uma pessoa a quem pertenÃ§a um numero de cartao de cidadÃ£o. Caso nÃ£o exista retorna null. 
+	 * @param numCC NÃºmero de cartÃ£o de cidadÃ£o.
+	 * @return Pessoa ou null se numCC nÃ£o existir.
 	 */
 	public Pessoa getPessoaByCC(String numCC) {
 		for(Pessoa p : pessoas) {
@@ -381,10 +404,10 @@ public class Sistema {
 	}
 	
 	/**
-	 * Verifica se a Pessoa associada a um número de cartão de cidadão tem a sua password igual à password passada.
-	 * @param numCC Número de cartão de cidadão.
+	 * Verifica se a Pessoa associada a um nÃºmero de cartÃ£o de cidadÃ£o tem a sua password igual Ã  password passada.
+	 * @param numCC NÃºmero de cartÃ£o de cidadÃ£o.
 	 * @param password Password
-	 * @return Pessoa ou null se o número de cartão de cidadão não corresponder à password.
+	 * @return Pessoa ou null se o nÃºmero de cartÃ£o de cidadÃ£o nÃ£o corresponder Ã  password.
 	 */
 	public Pessoa autenticar(String numCC, String password) {
 		Pessoa p = getPessoaByCC(numCC);

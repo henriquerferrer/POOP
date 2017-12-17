@@ -54,4 +54,8 @@ public class Inscricao implements Serializable, Comparable {
 		Inscricao i = (Inscricao) arg0;
 		return Integer.compare(this.id, i.id);
 	}
+	
+	@Override public String toString() {
+		return local.toString() + " " + pessoa.toString();
+	}
 }
